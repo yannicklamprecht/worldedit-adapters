@@ -753,15 +753,11 @@ public final class Spigot_v1_16_R3 implements BukkitImplAdapter {
     }
 
     private ResourceKey<WorldDimension> getWorldDimKey(Environment env) {
-        switch (env) {
-            case NETHER:
-                return WorldDimension.THE_NETHER;
-            case THE_END:
-                return WorldDimension.THE_END;
-            case NORMAL:
-            default:
-                return WorldDimension.OVERWORLD;
-        }
+        return switch (env) {
+            case NETHER -> WorldDimension.THE_NETHER;
+            case THE_END -> WorldDimension.THE_END;
+            default -> WorldDimension.OVERWORLD;
+        };
     }
 
     private static final Set<SideEffect> SUPPORTED_SIDE_EFFECTS = Sets.immutableEnumSet(
@@ -881,10 +877,10 @@ public final class Spigot_v1_16_R3 implements BukkitImplAdapter {
         if (foreign == null) {
             return null;
         }
-        if (foreign instanceof CompoundBinaryTag) {
+        if (foreign instanceof CompoundBinaryTag foreignCompount) {
             NBTTagCompound tag = new NBTTagCompound();
-            for (String key : ((CompoundBinaryTag) foreign).keySet()) {
-                tag.set(key, fromNative(((CompoundBinaryTag) foreign).get(key)));
+            for (String key : foreignCompount.keySet()) {
+                tag.set(key, fromNative(foreignCompount.get(key)));
             }
             return tag;
         } else if (foreign instanceof ByteBinaryTag) {
@@ -901,9 +897,8 @@ public final class Spigot_v1_16_R3 implements BukkitImplAdapter {
             return new NBTTagIntArray(((IntArrayBinaryTag) foreign).value());
         } else if (foreign instanceof LongArrayBinaryTag) {
             return new NBTTagLongArray(((LongArrayBinaryTag) foreign).value());
-        } else if (foreign instanceof ListBinaryTag) {
+        } else if (foreign instanceof ListBinaryTag foreignList) {
             NBTTagList tag = new NBTTagList();
-            ListBinaryTag foreignList = (ListBinaryTag) foreign;
             for (BinaryTag t : foreignList) {
                 tag.add(fromNative(t));
             }

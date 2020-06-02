@@ -19,9 +19,9 @@
 plugins {
     java
 }
-
-subprojects {
+allprojects {
     apply(plugin = "java")
+    apply(plugin = "maven-publish")
     group = "com.sk89q.worldedit.adapters"
     version = "1.0"
 
@@ -37,10 +37,6 @@ subprojects {
 
     dependencies {
         implementation("com.sk89q.worldedit:worldedit-bukkit:7.3.0-SNAPSHOT")
-    }
-
-    tasks.compileJava.configure {
-        options.release.set(8)
     }
 
     configurations.all {
@@ -59,6 +55,9 @@ mapOf(
     project(":$projectName") {
         dependencies.implementation("org.spigotmc", "spigot", "${ver}-R0.1-SNAPSHOT")
     }
+}
+project(":toothpick") {
+    dependencies.implementation("com.dyescape", "dyescapepaper-server", "1.16.5-R0.1-SNAPSHOT")
 }
 
 tasks.jar {
