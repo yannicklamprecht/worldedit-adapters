@@ -31,3 +31,4 @@ listOf(
 )
     .forEach { include("spigot_v1_${it.minor}_R${it.rel}") }
 include("toothpick")
+include("paperweight_1_17")

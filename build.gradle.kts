@@ -60,6 +60,10 @@ project(":toothpick") {
     dependencies.implementation("com.dyescape", "dyescapepaper-server", "1.16.5-R0.1-SNAPSHOT")
 }
 
+project(":paperweight_1_17") {
+    dependencies.implementation("io.papermc.paper", "paper", "1.17.1-R0.1-SNAPSHOT", classifier = "mojang-mapped" )
+}
+
 tasks.jar {
     from(subprojects.map {
         it.sourceSets["main"].output
