@@ -780,18 +780,6 @@ public final class Spigot_v1_17_R1 implements BukkitImplAdapter {
         return SUPPORTED_SIDE_EFFECTS;
     }
 
-    @Override
-    public boolean clearContainerBlockContents(org.bukkit.World world, BlockVector3 pt) {
-        WorldServer originalWorld = ((CraftWorld) world).getHandle();
-
-        TileEntity entity = originalWorld.getTileEntity(new BlockPosition(pt.getBlockX(), pt.getBlockY(), pt.getBlockZ()));
-        if (entity instanceof Clearable) {
-            ((Clearable) entity).clear();
-            return true;
-        }
-        return false;
-    }
-
     // ------------------------------------------------------------------------
     // Code that is less likely to break
     // ------------------------------------------------------------------------
