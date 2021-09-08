@@ -182,7 +182,7 @@ public final class Spigot_Paperweight_1_17 implements BukkitImplAdapter {
 
 
         int dataVersion = CraftMagicNumbers.INSTANCE.getDataVersion();
-        if (dataVersion != 2230) throw new UnsupportedClassVersionError("Not 1.15.2!");
+        if (dataVersion != 2730) throw new UnsupportedClassVersionError("Not 1.17.1!");
 
         // The list of tags on an NBTTagList
         nbtListTagListField = net.minecraft.nbt.ListTag.class.getDeclaredField("list");
